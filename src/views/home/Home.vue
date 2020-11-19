@@ -8,8 +8,8 @@
       :probe-type="3"
       @scroll="contentScroll"
       :pull-up-load="true"
-      @pullingUp="loadMore"
     >
+      <!-- @pullingUp="loadMore" -->
       <home-swiper :banners="banners" />
       <recommend-view :recommends="recommends" />
       <feature-view></feature-view>
@@ -83,8 +83,29 @@ export default {
 
     this.getHomeGoods("sell");
   },
+  mounted() {
+    const refresh = this.debounce(this.$refs.scroll.refresh, 500);
+    //3.监听item中图片加载完成
+    this.$bus.$on("itemImageLoad", () => {
+      console.log("---");
+
+      console.log("---");
+
+      this.$refs.scroll.refresh();
+    });
+  },
   methods: {
     //事件监听相关的方法
+
+    debounce(func, delay) {
+      let timer = null;
+      return function (...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeoout(() => {
+          func.apply(this, args);
+        }, delay);
+      };
+    },
     tabClick(index) {
       // console.log(index);
       switch (index) {
@@ -101,7 +122,6 @@ export default {
     // 网络请求 相关的方法
     getHomeMutidata() {
       getHomeMutidata().then((res) => {
-        // this.result = res;
         this.banners = res.data.banner.list;
         this.recommends = res.data.recommend.list;
       });
@@ -113,7 +133,7 @@ export default {
         this.goods[type].list.push(...res.data.list);
         this.goods[type].page += 1;
 
-        this.$refs.scroll.scroll.finishPullUp();
+        // this.$refs.scroll.finishPullUp();
       });
     },
     backClick() {
@@ -125,10 +145,10 @@ export default {
       // position.y < 1000;
       this.isShowBackTop = -position.y > 1000;
     },
-    loadMore() {
-      // console.log("上拉,加载更多");
-      this.getHomeGoods(this.currentType);
-    },
+    // loadMore() {
+    //   // console.log("上拉,加载更多");
+    //   this.getHomeGoods(this.currentType);
+    // },
   },
 };
 </script>

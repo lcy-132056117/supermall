@@ -15,10 +15,10 @@ export default {
       type: Number,
       default: 0,
     },
-    pullUpLoad: {
-      type: Boolean,
-      default: false,
-    },
+    // pullUpLoad: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   data() {
     return {
@@ -38,17 +38,20 @@ export default {
       this.$emit("scroll", position);
     });
     //3.监听上拉事件
-    this.scroll.on("pullingUp", () => {
-      // console.log("上拉加载更多");
-      this.$emit("pullingUp");
-    });
+    // this.scroll.on("pullingUp", () => {
+    //   // console.log("上拉加载更多");
+    //   this.$emit("pullingUp");
+    // });
   },
   methods: {
     scrollTo(x, y, time = 300) {
-      this.scroll.scrollTo(x, y, time);
+      this.scroll && this.scroll.scrollTo(x, y, time);
     },
     finishPullUp() {
       this.scroll.finishPullUp();
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh();
     },
   },
 };
