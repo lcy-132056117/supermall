@@ -32,10 +32,15 @@ export default {
 }
 .recommend-item {
   flex: 1;
+  text-decoration: none;
 }
 .recommend-item img {
   width: 70px;
   height: 70px;
   margin-bottom: 10px;
+}
+.recommend-item a {
+  text-decoration: none;
+  color: black;
 }
 </style>
