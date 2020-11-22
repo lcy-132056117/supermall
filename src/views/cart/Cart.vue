@@ -1,33 +1,31 @@
 <template>
   <div id="cart">
-    <nav-bar class="nav-bar"
-      ><div slot="center">购物车({{ cartCount }})</div></nav-bar
-    >
-    <cart-list class="cart-list" :cart-list="cartList"></cart-list>
-    <bottom-bar></bottom-bar>
+    <!-- cartCount -->
+    <!-- <nav-bar class="nav-bar"><div slot="center">购物车</div></nav-bar> -->
+    <!-- <cart-list class="cart-list" :cart-list="cartList"></cart-list> -->
+    <!-- <bottom-bar></bottom-bar> -->
   </div>
 </template>
 
 <script>
-import NavBar from "common/navbar/NavBar";
-import CartList from "./childComps/CartList";
-import BottomBar from "./childComps/BottomBar";
+// import NavBar from "common/navbar/NavBar";
+// import CartList from "./childComps/CartList";
+// import BottomBar from "./childComps/BottomBar";
 
 export default {
   name: "Cart",
   components: {
     NavBar,
-    CartList,
-    BottomBar,
+    // BottomBar,
   },
-  computed: {
-    cartList() {
-      return this.$store.getters.cartList;
-    },
-    cartCount() {
-      return this.$store.getters.cartCount;
-    },
-  },
+  // computed: {
+  //   cartList() {
+  //     return this.$store.getters.cartList;
+  //   },
+  //   cartCount() {
+  //     return this.$store.getters.cartCount;
+  //   },
+  // },
 };
 </script>
 

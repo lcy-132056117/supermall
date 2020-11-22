@@ -11,9 +11,9 @@
       :probe-type="3"
       @scroll="contentScroll"
     >
-      <ul>
+      <!-- <ul>
         <li v-for="item in $store.state.cartList">{{ item }}</li>
-      </ul>
+      </ul> -->
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods="goods" />
       <detail-shop-info :shop="shop" />
@@ -22,7 +22,8 @@
       <detail-comment-info ref="comment" :comment-info="commentInfo" />
       <goods-list ref="recommend" :goods="recommends" />
     </scroll>
-    <detail-bottom-bar @addCart="addToCart" />
+    <detail-bottom-bar />
+    <!-- @addCart="addToCart" -->
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
   </div>
 </template>
@@ -189,20 +190,20 @@ export default {
       //3.是否显示回到顶部
       this.isShowBackTop = -position.y > 1000;
     },
-    addToCart() {
-      // console.log(11);
-      //1.获取购物车需要显示的信息
-      const product = {};
-      product.image = this.topImages[0];
-      product.title = this.goods.title;
-      product.desc = this.goods.desc;
-      product.price = this.goods.realPrice;
+    // addToCart() {
+    //   // console.log(11);
+    //   //1.获取购物车需要显示的信息
+    //   const product = {};
+    //   product.image = this.topImages[0];
+    //   product.title = this.goods.title;
+    //   product.desc = this.goods.desc;
+    //   product.price = this.goods.realPrice;
 
-      product.iid = this.iid;
+    //   product.iid = this.iid;
 
-      //将商品添加到购物车里
-      this.$store.commit("addCart", product);
-    },
+    //   //将商品添加到购物车里
+    //   this.$store.commit("addCart", product);
+    // },
   },
 };
 </script>
